@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>IMDB Lookup</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<script>
+		
+	function display()
+	{
+		var x = document.getElementById("comment").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://www.omdbapi.com/?t="+x, false);
+        xhr.send();
+
+        var shaggy = JSON.parse(xhr.response);
+        var txt = "";
+        var i;
+
+       /* txt=txt+ "Title: "+ shaggy.Title+ "\n"+ "\n"+ "Year: "+ shaggy.Year+ "\n\nRated: "+ shaggy.Rated+ "\n\nReleased: "+ shaggy.Released+ "\n\nRuntime: "
+                + shaggy.Runtime+ "\n\nPlot:  " +shaggy.Plot+ "\n\nGenre: "+shaggy.Genre+"\n\nDirector: "+shaggy.Director+ "\n\nActors: "+shaggy.Actors+
+                "\n\nImdbRating: "+shaggy.imdbRating ;
+
+				alert(txt); */
+
+		document.getElementById("title").innerHTML ="Title: " + shaggy.Title;
+		document.getElementById("released").innerHTML ="Released: "+ shaggy.Released;
+		document.getElementById("actors").innerHTML ="Actors: "+shaggy.Actors;
+		document.getElementById("director").innerHTML ="Director: "+shaggy.Director;
+		document.getElementById("rating").innerHTML ="IMDB Rating: " + shaggy.imdbRating;
+		document.getElementById("rated").innerHTML ="Rated: " + shaggy.Rated;
+		document.getElementById("runtime").innerHTML ="Runtime: " + shaggy.Runtime;
+		document.getElementById("plot").innerHTML ="Plot: " + shaggy.Plot;
+		document.getElementById("genre").innerHTML ="Genre: " + shaggy.Genre;
+	}
+    
+	</script>
+
+
+<style type="text/css">
+	
+	#demo1{
+    position: relative;
+    left: 500px;
+	right: 500px;
+    top: 170px;
+	width: 320px;
+	height: 250px;
+	}
+	
+	#demo{
+	height:40px;
+	width: 100px;
+	color: black;
+	font-size: 16px;
+	}
+	
+	#size{
+	font-size: 17px;
+	}
+    
+	#deep{
+	text-align: centre;
+	font-size: 28px;
+	}
+	
+	#jeep{
+	height : 60px;
+	}
+	
+	#close{
+	width: 300px;
+	margin-left: 510px;
+	margin-top: 20px;
+	height: 60px;
+	font-size : 24px;
+	}
+	
+	div.jumbotron{
+	height : 613px;
+	}
+
+</style>
+
+
+<button type="button" class="btn btn-success" id="close">IMDB Lookup</button>
+
+<form role="form" id="demo1">
+    <div class="form-group">
+      <label for="comment" id="size">Enter here:</label>
+      <textarea class="form-control" rows="1" id="comment"></textarea>
+    </div>
+
+<button id="demo" type="button" onClick="display()" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Search</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+                <p id="title"></p>
+                <p id="released"></p>
+                <p id="genre">	</p>
+                <p id="plot"></p>
+				<p id="rating"></p>
+				<p id="rated"></p>
+				<p id="runtime"></p>
+				<p id="actors"></p>
+				<p id="director"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
